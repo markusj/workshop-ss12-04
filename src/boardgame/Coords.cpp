@@ -73,7 +73,7 @@ namespace boardgame {
 
     Coords* CoordFactory::initCoords() {
         if (dimX == 0 || dimY == 0) {
-            throw new std::invalid_argument("At least one dimension is set to zero.");
+            throw std::invalid_argument("At least one dimension is set to zero.");
         }
 
         void * const raw = operator new[](dimX * dimY * sizeof(Coords));
@@ -128,7 +128,7 @@ namespace boardgame {
 
     Coords& CoordFactory::getCoords(const uint8_t x, const uint8_t y) const {
         if (x >= dimX || y >= dimY) {
-            throw new std::out_of_range("At least one dimension exceedes the valid range.");
+            throw std::out_of_range("At least one dimension exceedes the valid range.");
         }
 
         return coords[coordsToIndex(dimX, x, y)];
