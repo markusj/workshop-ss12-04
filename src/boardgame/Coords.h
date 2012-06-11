@@ -19,6 +19,7 @@ namespace boardgame {
 
     class Coords {
         public:
+            bool inValidRange(const uint8_t x, const uint8_t y) const;
             Coords& valueOf(const uint8_t x, const uint8_t y) const;
 
             uint8_t getX() const;
@@ -51,8 +52,11 @@ namespace boardgame {
 
             CoordFactory& operator=(const CoordFactory &cf);
 
+            bool inValidRange(const uint8_t x, const uint8_t y) const;
             Coords& getCoords(const uint8_t x, const uint8_t y) const;
 
+            uint8_t getDimX() const;
+            uint8_t getDimY() const;
         private:
 
             Coords* initCoords();

@@ -24,6 +24,10 @@ namespace boardgame {
     Coords::~Coords() {
     }
 
+    bool Coords::inValidRange(const uint8_t x, const uint8_t y) const {
+        return factory.inValidRange(x, y);
+    }
+
     Coords& Coords::valueOf(const uint8_t x, const uint8_t y) const {
         // Bounds are checked by factory
         return factory.getCoords(x, y);
@@ -118,12 +122,24 @@ namespace boardgame {
         return *this;
     }
 
+    bool CoordFactory::inValidRange(const uint8_t x, const uint8_t y) const {
+        return x < dimX && y < dimY;
+    }
+
     Coords& CoordFactory::getCoords(const uint8_t x, const uint8_t y) const {
         if (x >= dimX || y >= dimY) {
             throw new std::out_of_range("At least one dimension exceedes the valid range.");
         }
 
         return coords[coordsToIndex(dimX, x, y)];
+    }
+
+    uint8_t CoordFactory::getDimX() const {
+        return dimX;
+    }
+
+    uint8_t CoordFactory::getDimY() const {
+        return dimY;
     }
 
 }
