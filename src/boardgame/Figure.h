@@ -25,17 +25,19 @@ namespace boardgame {
         public:
             virtual ~Figure() { };
 
-            virtual bool canMoveTo(const Coords to) const = 0;
-            virtual bool threatens(const Coords pos) const = 0;
+            virtual Figure* clone() const = 0;;
 
-            virtual bool prepareMove(MutableBoardTransaction &move) const = 0;
+            virtual bool canMoveTo(const Coords &to) const = 0;
+            virtual bool threatens(const Coords &pos) const = 0;
+
+            virtual bool apply(MutableBoardTransaction &move) const = 0;
 
             virtual Player* getPlayer() const = 0;
 
         protected:
             virtual void setPlayer(Player &p) = 0;
 
-            virtual Coords getPosition() const = 0;
+            virtual const Coords& getPosition() const = 0;
             virtual void setPosition(const Coords& c) = 0;
 
             virtual Board* getBoard() const = 0;
@@ -44,7 +46,7 @@ namespace boardgame {
 
     class AbstractFigure : public Figure {
         public:
-            AbstractFigure(Player * const b);
+            AbstractFigure(Player * const p);
             virtual ~AbstractFigure() { };
 
             virtual Player* getPlayer() const;
@@ -52,7 +54,7 @@ namespace boardgame {
         protected:
             virtual void setPlayer(Player &p);
 
-            virtual Coords getPosition() const;
+            virtual const Coords& getPosition() const;
             virtual void setPosition(const Coords& c);
 
             virtual Board* getBoard() const;

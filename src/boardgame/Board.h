@@ -8,6 +8,7 @@
 #ifndef BOARD_H_
 #define BOARD_H_
 
+#include <cstddef>
 #include "BoardTransaction.h"
 #include "Coords.h"
 #include "Figure.h"
@@ -19,25 +20,38 @@ namespace boardgame {
     class BoardTransaction;
     class Figure;
 
+    namespace BoardOp {
+        class Move;
+        class Replace;
+    }
+
     class Board {
-            friend class Move;
-            friend class Swap;
+            friend class BoardOp::Move;
+            friend class BoardOp::Replace;
 
         public:
-            Board(Coords dimensions);
+            Board(const Coords &dimensions);
             virtual ~Board();
 
-            Figure* atPos(const Coords &pos) const;
-            Figure* operator[](const Coords &pos) const;
+            Board(const Board &b);
+            Board& operator=(const Board &b);
+
+            const Coords& getDimensions();
+
+            const Figure* get(const Coords &pos) const;
 
             bool apply(BoardTransaction &tr);
             bool undo(BoardTransaction &tr);
 
+
+            // TODO: Observer
         protected:
-            Figure*& atPos(const Coords &pos);
-            Figure*& operator[](const Coords &pos);
+            bool move(const Coords &from, const Coords &to);
+            Figure* swap(const Coords &pos, const Figure * const fig);
 
         private:
+            size_t coordsToIndex(const Coords &c) const;
+
             Coords dim;
             Figure **board;
     };
@@ -45,7 +59,7 @@ namespace boardgame {
     namespace BoardOp {
 
         class Operation {
-                friend class Board;
+                friend class boardgame::Board;
 
             public:
                 Operation();
@@ -55,16 +69,17 @@ namespace boardgame {
                 bool apply(Board &b);
                 bool undo(Board &b);
 
+                bool isApplied();
+
                 virtual bool _applyImpl(Board &b) = 0;
                 virtual bool _undoImpl(Board &b) = 0;
-
             private:
-                bool done;
+                bool applied;
         };
 
         class Move : public Operation {
-                Move(Coords &from, Coords &to);
-                virtual ~Move();
+                Move(const Coords &from, const Coords &to);
+                virtual ~Move() { };
 
             protected:
                 virtual bool _applyImpl(Board &b);
@@ -75,10 +90,10 @@ namespace boardgame {
                 Coords to;
         };
 
-        class Swap : public Operation {
+        class Replace : public Operation {
             public:
-                Swap(Coords &pos, Figure &fig);
-                virtual ~Swap();
+                Replace(const Coords &pos, Figure &fig);
+                virtual ~Replace();
 
             protected:
                 virtual bool _applyImpl(Board &b);

@@ -27,7 +27,7 @@ namespace boardgame {
             friend class MutableBoardTransaction;
 
         public:
-            virtual ~BoardTransaction();
+            virtual ~BoardTransaction() { };
 
             virtual Coords& getFrom() const = 0;
             virtual Coords& getTo() const = 0;
@@ -86,10 +86,22 @@ namespace boardgame {
         public:
             virtual ~MutableBoardTransaction();
 
+            BoardTransaction& getBoardTransaction() const;
+
+            virtual Coords& getFrom() const;
+            virtual Coords& getTo() const;
+
+            virtual bool isAccepted() const;
             virtual void setAccepted(const bool accepted);
+
+            virtual StateCode_t getStateCode() const;
             virtual void setStateCode(const StateCode_t code);
 
             virtual std::vector<BoardOp::Operation*>& getBoardOps();
+            virtual const std::vector<BoardOp::Operation*>& getBoardOps() const;
+
+        private:
+            BoardTransaction *impl;
     };
 
 }
