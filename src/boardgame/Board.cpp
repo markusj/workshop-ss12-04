@@ -237,6 +237,10 @@ namespace boardgame {
         to(to) {
     }
 
+    BoardOp::Operation* BoardOp::Move::clone() {
+        return new Move(*this);
+    }
+
     bool BoardOp::Move:: _applyImpl(Board &b) {
         return b.move(from, to);
     }
@@ -250,6 +254,17 @@ namespace boardgame {
         position(pos),
         newFigure(fig.clone()),
         oldFigure(NULL) {
+    }
+
+    BoardOp::Replace::Replace(const BoardOp::Replace &r) :
+        BoardOp::Operation(),
+        position(r.position),
+        newFigure((r.newFigure == NULL) ? NULL : r.newFigure->clone()),
+        oldFigure((r.oldFigure == NULL) ? NULL : r.oldFigure->clone()) {
+    }
+
+    BoardOp::Operation* BoardOp::Replace::clone() {
+        return new Replace(*this);
     }
 
     BoardOp::Replace::~Replace() {

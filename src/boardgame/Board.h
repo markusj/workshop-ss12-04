@@ -59,6 +59,8 @@ namespace boardgame {
                 Operation();
                 virtual ~Operation() { };
 
+                virtual Operation* clone() = 0;
+
             protected:
                 bool apply(Board &b);
                 bool undo(Board &b);
@@ -75,6 +77,8 @@ namespace boardgame {
                 Move(const Coords &from, const Coords &to);
                 virtual ~Move() { };
 
+                virtual Operation* clone();
+
             protected:
                 virtual bool _applyImpl(Board &b);
                 virtual bool _undoImpl(Board &b);
@@ -87,7 +91,10 @@ namespace boardgame {
         class Replace : public Operation {
             public:
                 Replace(const Coords &pos, Figure &fig);
+                Replace(const Replace &r);
                 virtual ~Replace();
+
+                virtual Operation* clone();
 
             protected:
                 virtual bool _applyImpl(Board &b);
