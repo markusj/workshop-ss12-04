@@ -83,7 +83,7 @@ namespace boardgame {
             MutableBoardTransaction(BoardTransaction &tr);
 
         public:
-            virtual ~MutableBoardTransaction();
+            virtual ~MutableBoardTransaction() { };
 
             BoardTransaction& getBoardTransaction() const;
 
