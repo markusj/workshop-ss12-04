@@ -74,6 +74,7 @@ namespace boardgame {
         };
 
         class Move : public Operation {
+        	public:
                 Move(const Coords &from, const Coords &to);
                 virtual ~Move() { };
 
@@ -90,7 +91,7 @@ namespace boardgame {
 
         class Replace : public Operation {
             public:
-                Replace(const Coords &pos, Figure &fig);
+                Replace(const Coords &pos, Figure *fig);
                 Replace(const Replace &r);
                 virtual ~Replace();
 

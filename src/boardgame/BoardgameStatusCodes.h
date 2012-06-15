@@ -13,6 +13,8 @@ namespace boardgame {
     enum BoardgameStatusCode {
         bsc_SourceAndDestinationAreEqual,
 
+        bsc_invalid,
+
         bsc_LASTCODE
     };
 

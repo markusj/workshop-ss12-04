@@ -249,10 +249,10 @@ namespace boardgame {
         return b.move(to, from);
     }
 
-    BoardOp::Replace::Replace(const Coords &pos, Figure &fig) :
+    BoardOp::Replace::Replace(const Coords &pos, Figure *fig) :
         BoardOp::Operation(),
         position(pos),
-        newFigure(fig.clone()),
+        newFigure((NULL == fig) ? (NULL) : (fig->clone())),
         oldFigure(NULL) {
     }
 

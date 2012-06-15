@@ -8,13 +8,14 @@
 #ifndef BOARDGAME_H_
 #define BOARDGAME_H_
 
+#include <vector>
+
 // Forward declarations
 namespace boardgame {
     typedef unsigned char CoordsBase_t;
 
     typedef unsigned int StateCode_t;
     typedef unsigned int TransactionNumber_t;
-    typedef std::vector<BoardOp::Operation*> BoardOpVec;
 
     class Board;
     class BoardTransaction;
@@ -28,6 +29,8 @@ namespace boardgame {
         class Move;
         class Replace;
     }
+
+    typedef std::vector<BoardOp::Operation*> BoardOpVec;
 }
 
 #endif /* BOARDGAME_H_ */

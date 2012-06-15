@@ -19,6 +19,7 @@ namespace boardgame {
             ~Coords();
 
             bool operator==(const Coords &c) const;
+            bool operator!= (const Coords &c) const { return !(*this == c); }
 
             CoordsBase_t getX() const;
             Coords setX(const CoordsBase_t x) const;
