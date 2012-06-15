@@ -28,12 +28,14 @@ namespace boardgame {
 
             virtual bool isAccepted() const = 0;
             virtual StateCode_t getStateCode() const = 0;
+            virtual TransactionNumber_t getTransactionNumber() const = 0;
 
             virtual const std::vector<BoardOp::Operation*>& getBoardOps() const = 0;
 
         protected:
             virtual void setAccepted(const bool accepted) = 0;
             virtual void setStateCode(const StateCode_t code) = 0;
+            virtual void setTransactionNumber(const TransactionNumber_t value) = 0;
 
             virtual std::vector<BoardOp::Operation*>& getBoardOps() = 0;
     };
