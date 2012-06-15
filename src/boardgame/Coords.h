@@ -12,12 +12,14 @@
 
 namespace boardgame {
 
-    typedef unsigned char CoordsBase_t; // Evil but i don't care ...
+    typedef unsigned char CoordsBase_t;
 
     class Coords {
         public:
             Coords(const CoordsBase_t x, const CoordsBase_t y);
             ~Coords();
+
+            bool operator==(const Coords &c) const;
 
             CoordsBase_t getX() const;
             Coords setX(const CoordsBase_t x) const;
