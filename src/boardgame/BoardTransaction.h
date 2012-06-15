@@ -23,8 +23,8 @@ namespace boardgame {
         public:
             virtual ~BoardTransaction() { };
 
-            virtual Coords& getFrom() const = 0;
-            virtual Coords& getTo() const = 0;
+            virtual const Coords& getFrom() const = 0;
+            virtual const Coords& getTo() const = 0;
 
             virtual bool isAccepted() const = 0;
             virtual StateCode_t getStateCode() const = 0;
@@ -48,8 +48,8 @@ namespace boardgame {
             BasicBoardTransaction(const BasicBoardTransaction &src);
             BasicBoardTransaction& operator=(const BasicBoardTransaction &src);
 
-            virtual Coords& getFrom() const;
-            virtual Coords& getTo() const;
+            virtual const Coords& getFrom() const;
+            virtual const Coords& getTo() const;
 
             virtual bool isAccepted() const;
             virtual StateCode_t getStateCode() const;
@@ -85,8 +85,8 @@ namespace boardgame {
 
             BoardTransaction& getBoardTransaction() const;
 
-            virtual Coords& getFrom() const;
-            virtual Coords& getTo() const;
+            virtual const Coords& getFrom() const;
+            virtual const Coords& getTo() const;
 
             virtual bool isAccepted() const;
             virtual void setAccepted(const bool accepted);
