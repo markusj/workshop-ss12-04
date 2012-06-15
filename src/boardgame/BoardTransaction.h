@@ -5,24 +5,17 @@
  *      Author: markus
  */
 
+
+
 #ifndef BOARDTRANSACTION_H_
 #define BOARDTRANSACTION_H_
 
 #include <vector>
-#include "Board.h"
+#include "boardgame.h"
 #include "Coords.h"
-#include "Figure.h"
+#include "Board.h"
 
 namespace boardgame {
-
-    // Forward declarations
-    class Board;
-    namespace BoardOp {
-        class Operation;
-    }
-
-    typedef unsigned int StateCode_t;
-    typedef unsigned int TransactionNumber_t;
 
     class BoardTransaction {
             friend class MutableBoardTransaction;

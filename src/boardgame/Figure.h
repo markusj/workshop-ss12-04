@@ -5,19 +5,16 @@
  *      Author: markus
  */
 
+
+
 #ifndef FIGURE_H_
 #define FIGURE_H_
 
+#include "boardgame.h"
 #include "Coords.h"
-#include "Board.h"
-#include "BoardTransaction.h"
 #include "Player.h"
 
 namespace boardgame {
-
-    // Forward declarations
-    class Board;
-    class MutableBoardTransaction;
 
     class Figure {
             friend class Board;

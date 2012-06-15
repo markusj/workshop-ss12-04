@@ -9,10 +9,9 @@
 #define COORDS_H_
 
 #include <cstddef>
+#include "boardgame.h"
 
 namespace boardgame {
-
-    typedef unsigned char CoordsBase_t;
 
     class Coords {
         public:
@@ -28,8 +27,8 @@ namespace boardgame {
             Coords setY(const CoordsBase_t y) const;
 
         private:
-            /* const */ CoordsBase_t x;
-            /* const */ CoordsBase_t y;
+            CoordsBase_t x;
+            CoordsBase_t y;
     };
 
 }

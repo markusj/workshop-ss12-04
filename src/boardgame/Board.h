@@ -5,25 +5,17 @@
  *      Author: markus
  */
 
+
 #ifndef BOARD_H_
 #define BOARD_H_
 
 #include <cstddef>
-#include "BoardTransaction.h"
+#include "boardgame.h"
 #include "Coords.h"
+#include "BoardTransaction.h"
 #include "Figure.h"
-#include "Player.h"
 
 namespace boardgame {
-
-    // Forward declarations
-    class BoardTransaction;
-    class Figure;
-
-    namespace BoardOp {
-        class Move;
-        class Replace;
-    }
 
     class Board {
             friend class BoardOp::Move;
