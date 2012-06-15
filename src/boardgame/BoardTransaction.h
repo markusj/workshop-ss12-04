@@ -30,14 +30,14 @@ namespace boardgame {
             virtual StateCode_t getStateCode() const = 0;
             virtual TransactionNumber_t getTransactionNumber() const = 0;
 
-            virtual const std::vector<BoardOp::Operation*>& getBoardOps() const = 0;
+            virtual BoardOpVec const& getBoardOps() const = 0;
 
         protected:
             virtual void setAccepted(const bool accepted) = 0;
             virtual void setStateCode(const StateCode_t code) = 0;
             virtual void setTransactionNumber(const TransactionNumber_t value) = 0;
 
-            virtual std::vector<BoardOp::Operation*>& getBoardOps() = 0;
+            virtual BoardOpVec& getBoardOps() = 0;
     };
 
     class BasicBoardTransaction: public BoardTransaction {
@@ -57,14 +57,14 @@ namespace boardgame {
             virtual StateCode_t getStateCode() const;
             virtual TransactionNumber_t getTransactionNumber() const;
 
-            virtual const std::vector<BoardOp::Operation*>& getBoardOps() const;
+            virtual BoardOpVec const& getBoardOps() const;
 
         protected:
             virtual void setAccepted(const bool accepted);
             virtual void setStateCode(const StateCode_t code);
             virtual void setTransactionNumber(const TransactionNumber_t value);
 
-            virtual std::vector<BoardOp::Operation*>& getBoardOps();
+            virtual BoardOpVec& getBoardOps();
 
 
             Coords from;
@@ -99,8 +99,8 @@ namespace boardgame {
             virtual TransactionNumber_t getTransactionNumber() const;
             virtual void setTransactionNumber(const TransactionNumber_t value);
 
-            virtual std::vector<BoardOp::Operation*>& getBoardOps();
-            virtual const std::vector<BoardOp::Operation*>& getBoardOps() const;
+            virtual BoardOpVec& getBoardOps();
+            virtual BoardOpVec const& getBoardOps() const;
 
         private:
             BoardTransaction *impl;

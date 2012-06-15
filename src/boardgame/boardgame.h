@@ -11,8 +11,10 @@
 // Forward declarations
 namespace boardgame {
     typedef unsigned char CoordsBase_t;
+
     typedef unsigned int StateCode_t;
     typedef unsigned int TransactionNumber_t;
+    typedef std::vector<BoardOp::Operation*> BoardOpVec;
 
     class Board;
     class BoardTransaction;
