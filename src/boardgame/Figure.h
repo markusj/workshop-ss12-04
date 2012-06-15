@@ -22,7 +22,7 @@ namespace boardgame {
         public:
             virtual ~Figure() { };
 
-            virtual Figure* clone() const = 0;;
+            virtual Figure* clone() const = 0;
 
             virtual bool canMoveTo(const Coords &to) const = 0;
             virtual bool threatens(const Coords &pos) const = 0;
