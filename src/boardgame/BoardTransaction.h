@@ -22,6 +22,7 @@ namespace boardgame {
     }
 
     typedef unsigned int StateCode_t;
+    typedef unsigned int TransactionNumber_t;
 
     class BoardTransaction {
             friend class MutableBoardTransaction;
@@ -59,12 +60,14 @@ namespace boardgame {
 
             virtual bool isAccepted() const;
             virtual StateCode_t getStateCode() const;
+            virtual TransactionNumber_t getTransactionNumber() const;
 
             virtual const std::vector<BoardOp::Operation*>& getBoardOps() const;
 
         protected:
             virtual void setAccepted(const bool accepted);
             virtual void setStateCode(const StateCode_t code);
+            virtual void setTransactionNumber(const TransactionNumber_t value);
 
             virtual std::vector<BoardOp::Operation*>& getBoardOps();
 
@@ -74,6 +77,7 @@ namespace boardgame {
 
             bool accepted;
             StateCode_t stateCode;
+            TransactionNumber_t num;
             std::vector<BoardOp::Operation*> boardOps;
     };
 
@@ -96,6 +100,9 @@ namespace boardgame {
 
             virtual StateCode_t getStateCode() const;
             virtual void setStateCode(const StateCode_t code);
+
+            virtual TransactionNumber_t getTransactionNumber() const;
+            virtual void setTransactionNumber(const TransactionNumber_t value);
 
             virtual std::vector<BoardOp::Operation*>& getBoardOps();
             virtual const std::vector<BoardOp::Operation*>& getBoardOps() const;

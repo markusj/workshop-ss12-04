@@ -50,10 +50,12 @@ namespace boardgame {
             Figure* swap(const Coords &pos, const Figure * const fig);
 
         private:
+            bool inRange(const Coords &c) const;
             size_t coordsToIndex(const Coords &c) const;
 
             Coords dim;
             Figure **board;
+            TransactionNumber_t nextTransaction;
     };
 
     namespace BoardOp {
