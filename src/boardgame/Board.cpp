@@ -20,7 +20,7 @@ namespace boardgame {
 
     Board::~Board() {
         for (size_t i = 0; i < dim.getX() * dim.getY(); i++) {
-            board[i]->~Figure();
+            delete board[i];
         }
 
         delete[] board;
